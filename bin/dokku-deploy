@@ -42,7 +42,7 @@ fi
 
 if [ "$COMMAND" = "review-apps:destroy" ]; then
   log-info "Destroying review app '${REVIEW_APP_NAME}'"
-  ssh "$ssh_remote" -- --force apps:destroy "$REVIEW_APP_NAME"
+  ssh "$ssh_remote" -- dokku apps:destroy --force "$REVIEW_APP_NAME"
   exit 0
 fi
 
@@ -58,7 +58,7 @@ fi
 
 if [ "$COMMAND" = "review-apps:create" ]; then
   log-info "Ensuring review app '${REVIEW_APP_NAME}' exists"
-  ssh "$ssh_remote" -- apps:clone --skip-deploy --ignore-existing "$app_name" "$REVIEW_APP_NAME"
+  ssh "$ssh_remote" -- dokku apps:clone --skip-deploy --ignore-existing "$app_name" "$REVIEW_APP_NAME"
 fi
 
 log-info "Pushing to Dokku Host"
